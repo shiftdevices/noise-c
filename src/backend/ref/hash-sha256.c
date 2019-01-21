@@ -36,10 +36,10 @@ static void noise_sha256_reset(NoiseHashState *state)
     sha256_reset(&(st->sha256));
 }
 
-static void noise_sha256_update(NoiseHashState *state, const uint8_t *data, size_t len)
+static void local_sha256_update(NoiseHashState *state, const uint8_t *data, size_t len)
 {
     NoiseSHA256State *st = (NoiseSHA256State *)state;
-    sha256_update(&(st->sha256), data, len);
+    noise_sha256_update(&(st->sha256), data, len);
 }
 
 static void noise_sha256_finalize(NoiseHashState *state, uint8_t *hash)
@@ -57,7 +57,7 @@ NoiseHashState *noise_sha256_new(void)
     state->parent.hash_len = 32;
     state->parent.block_len = 64;
     state->parent.reset = noise_sha256_reset;
-    state->parent.update = noise_sha256_update;
+    state->parent.update = local_sha256_update;
     state->parent.finalize = noise_sha256_finalize;
     return &(state->parent);
 }

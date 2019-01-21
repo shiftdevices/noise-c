@@ -275,7 +275,7 @@ int noise_format_fingerprint
 
     /* Hash the public key with SHA256 */
     sha256_reset(&sha256);
-    sha256_update(&sha256, public_key, public_key_len);
+    noise_sha256_update(&sha256, public_key, public_key_len);
     sha256_finish(&sha256, hash);
     noise_clean(&sha256, sizeof(sha256));
 

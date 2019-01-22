@@ -15,6 +15,6 @@
 
 #define ed25519_hash_context sha512_context_t
 #define ed25519_hash_init sha512_reset
-#define ed25519_hash_update sha512_update
+#define ed25519_hash_update noise_sha512_update
 #define ed25519_hash_final sha512_finish
 #define ed25519_hash sha512_hash

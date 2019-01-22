@@ -139,7 +139,7 @@ static void sha512_transform(sha512_context_t *context, const uint8_t *m)
     context->h[7] += h;
 }
 
-void sha512_update(sha512_context_t *context, const void *data, size_t size)
+void noise_sha512_update(sha512_context_t *context, const void *data, size_t size)
 {
     const uint8_t *d = (const uint8_t *)data;
     while (size > 0) {
@@ -201,6 +201,6 @@ void sha512_hash(uint8_t *hash, const void *data, size_t size)
 {
     sha512_context_t context;
     sha512_reset(&context);
-    sha512_update(&context, data, size);
+    noise_sha512_update(&context, data, size);
     sha512_finish(&context, hash);
 }

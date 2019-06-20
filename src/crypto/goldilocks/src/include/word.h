@@ -10,8 +10,13 @@
 
 #include "arch_config.h"
 
+#if defined(__BYTE_ORDER__)
+#define __BYTE_ORDER __BYTE_ORDER__
+#define __LITTLE_ENDIAN __ORDER_LITTLE_ENDIAN__
+#define __BIG_ENDIAN __ORDER_BIG_ENDIAN__
+#endif
 
-#ifndef __APPLE__
+#if !defined(__APPLE__) && !defined(__BYTE_ORDER)
 #if defined(__WIN32__) || defined(WIN32)
 #ifndef __BIG_ENDIAN
 #define __BIG_ENDIAN 4321

@@ -22,6 +22,13 @@
 
 #include "ghash.h"
 #include <string.h>
+
+#if defined(__BYTE_ORDER__)
+#define __BYTE_ORDER __BYTE_ORDER__
+#define __LITTLE_ENDIAN __ORDER_LITTLE_ENDIAN__
+#define __BIG_ENDIAN __ORDER_BIG_ENDIAN__
+#endif
+
 #if defined(__WIN32__) || defined(WIN32)
 #ifndef __BIG_ENDIAN
 #define __BIG_ENDIAN 4321
@@ -43,7 +50,7 @@
 #if !defined( __LITTLE_ENDIAN) && defined(__DARWIN_LITTLE_ENDIAN)
 #define __LITTLE_ENDIAN __DARWIN_LITTLE_ENDIAN
 #endif
-#else
+#elif !defined(__BYTE_ORDER)
 #include <endian.h>
 #endif
 
